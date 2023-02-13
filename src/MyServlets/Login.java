@@ -23,15 +23,19 @@ public class Login extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
+		String Email = request.getParameter("email");
+		String Password = request.getParameter("password");
 		
-		if(MyDao.CheckLogin.validate(email, password)){
+		if(MyDao.CheckLogin.validate(Email, Password)){
 			
 			HttpSession session = request.getSession();
-			System.out.println(session);
-			session.setAttribute(email, email);
-			session.setAttribute(password, password);
+			
+			session.setAttribute("email", Email);
+			session.setAttribute("password", Password);
+			
+//			System.out.println(session);
+//			System.out.println(Email);
+//			System.out.println(Password);
 			
 			response.sendRedirect("profile");
 			
